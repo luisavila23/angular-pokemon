@@ -1,0 +1,37 @@
+<div class="inline-block">
+  <label>Ingresa el nombre del pokemon:</label>
+  <!--Adapt the input and the button to get the pokemon info by name-->
+  <input
+    type="text"
+    [(ngModel)]="name"
+    placeholder="ejm pikachu"
+    (keyup.enter)="getInfo()"
+  />
+  <button (click)="getInfo()" [disabled]="pokemonService.loading()">
+    Buscar
+  </button>
+
+  @if (pokemonService.loading()) {
+  <p>Buscando Pokémon...</p>
+  } @if (pokemonService.error()) {
+  <p>{{ pokemonService.error() }}</p>
+  }
+</div>
+
+<!--Here goes the logic for showing the card info-->
+@if (pokemonService.pokemon(); as pokemon) {
+<mat-card>
+  <mat-card-content>
+    <h2>{{ pokemon.name }}</h2>
+    <p>XP: {{ pokemon.base_experience }}</p>
+    <p>type: {{types().join(', ')}}</p>
+    @if (pokemon.sprites.front_default) {
+    <img
+      [src]="pokemon.sprites.front_default"
+      [alt]="pokemon.name"
+      width="150"
+    />
+    }
+  </mat-card-content>
+</mat-card>
+}
