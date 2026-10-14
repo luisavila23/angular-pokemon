@@ -4,6 +4,12 @@ export interface Pokemon {
   base_experience: number;
   sprites: {
     front_default: string;
+
+    other: {
+      "official-artwork": {
+        front_default: string;
+      };
+    };
   };
   types: {
     slot: number;
