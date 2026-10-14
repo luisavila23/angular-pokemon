@@ -31,11 +31,16 @@
             "outputPath": "dist/demo",
             "polyfills": [],
             "scripts": [],
-            "styles": [
-              "src/material-theme.scss",
-              "src/global_styles.css"
-            ],
-            "tsConfig": "tsconfig.app.json"
+            "styles": ["src/material-theme.scss", "src/global_styles.css"],
+            "tsConfig": "tsconfig.app.json",
+            "optimization": {
+              "scripts": true,
+              "styles": {
+                "minify": true,
+                "inlineCritical": false
+              },
+              "fonts": true
+            }
           }
         },
         "serve": {
